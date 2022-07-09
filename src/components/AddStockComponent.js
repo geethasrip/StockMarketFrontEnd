@@ -21,6 +21,13 @@ class AddStock extends Component {
 
 
     addStock() {
+
+        if(this.state.companyCode===""||this.state.companyCode===null)
+        {
+            alert("please select  company");
+            return false;
+
+        }
         StockService.addStock(this.state).then(
             (response) => {
                 if (response.status === 200) {
@@ -32,8 +39,6 @@ class AddStock extends Component {
 
     }
 
-
-
     render() {
         return (
             <div>
@@ -41,13 +46,15 @@ class AddStock extends Component {
                 <div>
                     <div className="container">
                         {/* Company :<input type="text" onChange={(e) => { this.setState({ companyCode: e.target.value }) }} /><br></br> */}
-
-                        Company Name:  <select name="selectList" id="selectList" onChange={(e) => { this.setState({ companyCode: e.target.value }) }}>
+                        <form onSubmit={() => this.addStock()}>
+                        Company Name:  <select required name="selectList" id="selectList" onChange={(e) => { this.setState({ companyCode: e.target.value }) }}>
                             <option value="">Please select option</option>
                             {this.state.companyList.map((company) => <option key={company.companyCode} value={company.companyCode}>{company.companyName}</option>)}
                         </select><br></br><br></br>
-                        StockPrice :<input type="text" onChange={(e) => { this.setState({ stockPrice: e.target.value }) }}></input><br></br>
-                        <button className="btn btn-success" onClick={() => this.addStock()}>Submit</button>
+                        StockPrice :<input type="number" required onChange={(e) => { this.setState({ stockPrice: e.target.value }) }} ></input><br></br>
+                        {/* <button className="btn btn-success" onClick={() => this.addStock()}>Submit</button> */}
+                       <input className='btn btn-success' type="submit" value="submit"/>
+                        </form>
                     </div>
                 </div>
             </div>

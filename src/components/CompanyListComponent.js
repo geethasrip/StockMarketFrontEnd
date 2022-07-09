@@ -18,37 +18,49 @@ getAllCompanies(){
     }
 );
 }
-    componentDidMount(){
-        this.getAllCompanies();
-    }
-    getAllCompanies(){
-       StockService.getAllCompanies().then(
-        (response)=>{
-            (this.setState({companyList:response.data}))
-        }
-    );
-    }
+ 
+handleDelete(companyCode){
+    StockService.handleDelete(companyCode).then(
+     (response)=>{
+     alert(response.data);
+     this.getAllCompanies();
+     }
+ );
+ }
+   
 
     render() {
         return (
             <div>
-                <h2>Company List </h2>
-                <table className="table table-hover">
-                  
-                    <th>CompanyName</th>
-                    <th>CEO</th>
-                    <th>TurnOver</th>
-                    <th>Website</th>
-                    <th>Stock Price</th>
-             
+                <h2 className="text-center">Company List </h2>
+                <table className="table table-stripped">
+                  <thead>
+                    <tr className="bg-info text-white" >
+                    <td>CompanyName</td>
+                    <td>CEO</td>
+                    <td>TurnOver</td>
+                    <td>Website</td>
+                    <td>Stock Price</td>
+                    <td>Type of Exchange</td>
+                    <td>Operation</td>
+                    </tr>
+                    </thead>
                     <tbody>
                     {
-                        this.state.companyList.map((company)=>(
-                            <tr>
+                       this.state.companyList.map((company)=>(
+                            <tr key="company.companyCode">
                                 <td>{company.companyName}</td>
                                 <td>{company.companyCEO}</td>
                                 <td>{company.companyTurnover}</td>
                                 <td>{company.companyWebsite}</td>
+                                <td>{company.stockPrice}</td>
+                                <td>{company.stockExchange}</td>
+                                <td>
+                  <button className="btn btn-warning m-2" onClick={() => this.handleDelete(company.companyCode)}>
+                    DELETE
+                  </button>
+                  
+                </td>
                             </tr>
                         ))
                     }

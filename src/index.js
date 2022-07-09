@@ -12,8 +12,7 @@ root.render(
   </React.StrictMode>
 );
 
-const element= <h1>Helloworld</h1>
-ReactDOM.render(element,document.getElementById('root'));
+
 
 
 // If you want to start measuring performance in your app, pass a function
