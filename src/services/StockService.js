@@ -1,6 +1,6 @@
 import axios from "axios";
-const URL="http://localhost:8081/api/v1.0/market/company"
-const StockURL="http://localhost:8089/api/v1.0/market/stock"
+const URL="https://stockmarket-api-gateway.azuremicroservices.io/api/v1.0/market/company"
+const StockURL="https://stockmarket-api-gateway.azuremicroservices.io/api/v1.0/market/stock"
 class StockService{
 
     getAllCompanies(){

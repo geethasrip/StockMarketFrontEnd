@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL="http://localhost:8080/api/v1.0/market/auth"
+const URL="https://stockmarket-api-gateway.azuremicroservices.io/api/v1.0/market/auth"
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class AuthService{
 
